@@ -2,12 +2,23 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCaretDown, faCircleUser, faCog, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { useAdminAccessStore } from '@/stores';
+import { ref } from 'vue';
+import router from '@/router';
+
 library.add(faCircleUser, faCaretDown, faCog, faRightFromBracket);
 
-import { ref } from 'vue';
 const showAccountControl = ref(false);
 function toggleShowAccountControl() {
   showAccountControl.value = showAccountControl.value ? false : true;
+}
+
+const adminAccessStore = useAdminAccessStore();
+
+function logOutAndRedirect() {
+  adminAccessStore.logOutAdmin();
+  router.push("/auth");
+  console.log("some")
 }
 </script>
 
@@ -38,11 +49,11 @@ function toggleShowAccountControl() {
                 class="block px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"
                 ><font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-cog" />Settings</RouterLink
               >
-              <RouterLink
-                to="/admin/logout"
-                class="block px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"
+              <button
+                @click="logOutAndRedirect"
+                class="block w-full text-left px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"
                 ><font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-right-from-bracket" />Log
-                Out</RouterLink
+                Out</button
               >
             </div>
           </div>

@@ -8,9 +8,11 @@ const adminAccessStore = useAdminAccessStore();
 const username = ref("");
 const password = ref("");
 
-async function submitLoginDetails() {
-  adminAccessStore.loginAdmin(username.value, password.value);
+async function loginAndRedirect() {
+  await adminAccessStore.loginAdmin(username.value, password.value);
+  router.push("/dashboard")
 }
+
 </script>
 
 <template>
@@ -22,5 +24,5 @@ async function submitLoginDetails() {
   <label for="password">Password</label>
   <input type="text" v-model="password">
   
-  <button @click="submitLoginDetails">Log In</button>
+  <button @click="loginAndRedirect">Log In</button>
 </template>

@@ -9,3 +9,10 @@ export const validateAdmin = (to: RouteLocationNormalized, from: RouteLocationNo
     return { path: '/auth' };
   }
 }
+
+export const validateNoAdmin = (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+  const adminAccessStore = useAdminAccessStore();
+  if (adminAccessStore.admin.token) {
+    return { path: '/dashboard' }
+  }
+}

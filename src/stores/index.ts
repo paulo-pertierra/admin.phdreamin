@@ -1,25 +1,22 @@
 import axios from "axios";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { defineStore } from "pinia";
-import { useRouter } from "vue-router";
 
 export const useAdminAccessStore = defineStore('admin', () => {
-  // @paulo-pertierra: State
+  // State
   const admin = reactive({
     username: "",
     token: ""
   })
 
-  // @paulo-pertierra: Actions
+  // Actions
   const loginAdmin = async (username: string, password: string) => {
-    axios
+    await axios
       .post('/admin/auth/login', { username, password })
       .then((response) => {
         const { username, token } = response.data.data;
         admin.username = username;
         admin.token = token;
-        const router = useRouter();
-        router.push("/dashboard");
       })
       .catch(() => {
         alert("Could not log in.");
@@ -29,6 +26,13 @@ export const useAdminAccessStore = defineStore('admin', () => {
     admin.username = "";
     admin.token = ""
   }
-  // @paulo-pertierra: Store Interface
+  // Store Interface
   return { admin, loginAdmin, logOutAdmin };
 }, { persist: true })
+
+export const useRegistreeStore = defineStore('registree', () => {
+  
+  
+  const registrees = ref([]);
+
+})
