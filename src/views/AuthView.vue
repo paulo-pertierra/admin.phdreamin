@@ -1,12 +1,14 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useAdminAccessStore } from "@/stores";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const adminAccessStore = useAdminAccessStore();
 const username = ref("");
 const password = ref("");
 
-function submitLoginDetails() {
+async function submitLoginDetails() {
   adminAccessStore.loginAdmin(username.value, password.value);
 }
 </script>

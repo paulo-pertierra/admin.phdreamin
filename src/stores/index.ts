@@ -1,6 +1,7 @@
 import axios from "axios";
 import { reactive } from "vue";
 import { defineStore } from "pinia";
+import { useRouter } from "vue-router";
 
 export const useAdminAccessStore = defineStore('admin', () => {
   // @paulo-pertierra: State
@@ -17,6 +18,8 @@ export const useAdminAccessStore = defineStore('admin', () => {
         const { username, token } = response.data.data;
         admin.username = username;
         admin.token = token;
+        const router = useRouter();
+        router.push("/dashboard");
       })
       .catch(() => {
         alert("Could not log in.");

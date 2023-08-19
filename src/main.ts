@@ -21,6 +21,7 @@ import piniaPluginPersistedState from "pinia-plugin-persistedstate";
 import axios from 'axios';
 import { useAdminAccessStore } from './stores';
 import Swal from 'sweetalert2';
+import { markRaw } from 'vue';
 
 library.add(
   faCaretDown,
@@ -36,11 +37,17 @@ library.add(
 );
 
 const app = createApp(App);
+const pinia = createPinia();
 
-app.use(createPinia().use(piniaPluginPersistedState));
-app.component('font-awesome-icon', FontAwesomeIcon);
+pinia.use(({ store }) => {
+  store.router = markRaw(router);
+})
+pinia.use(piniaPluginPersistedState);
+
+app.use(pinia);
 app.use(router);
 
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');
 
 const adminAccessStore = useAdminAccessStore();
@@ -50,6 +57,8 @@ axios.interceptors.response.use((response) => response, (error) => {
   if (error.response && error.response.status === 401) {
     adminAccessStore.logOutAdmin();
     Swal.fire("Expired Token", "You've been logged out", "warning");
+    router.push("/auth");
+    return;
   }
   return Promise.reject(error);
 })
