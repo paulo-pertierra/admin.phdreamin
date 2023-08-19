@@ -2,9 +2,9 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCaretDown, faCircleUser, faCog, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faCircleUser, faCaretDown, faCog, faRightFromBracket)
+library.add(faCircleUser, faCaretDown, faCog, faRightFromBracket);
 
-import { ref } from "vue";
+import { ref } from 'vue';
 const showAccountControl = ref(false);
 function toggleShowAccountControl() {
   showAccountControl.value = showAccountControl.value ? false : true;
@@ -18,19 +18,34 @@ function toggleShowAccountControl() {
       <div class="relative border-2">
         <button
           @click="toggleShowAccountControl()"
-          class="absolute -translate-y-1/2 top-1/2 right-0 text-sm font-semibold flex items-center hover:bg-text hover:text-white p-2 rounded-lg transition-colors">
+          class="absolute -translate-y-1/2 top-1/2 right-0 text-sm font-semibold flex items-center hover:bg-text hover:text-white p-2 rounded-lg transition-colors"
+        >
           <font-awesome-icon class="text-lg pr-1" icon="fa-solid fa-circle-user" />
-            Administrator
+          Administrator
           <font-awesome-icon class="text-sm pl-5" icon="fa-solid fa-caret-down" />
         </button>
         <Transition>
-          <div v-if="showAccountControl" class="absolute top-6 right-0 w-48 rounded-lg bg-white z-10 shadow-smd text-text transition-all">
-          <div class="absolute right-0 bg-white rounded-lg shadow-smd px-4 py-2">
-            <div class="px-2 py-1 font-semibold rounded-lg bg-text text-zinc-50 my-1"><font-awesome-icon class="pr-2" icon="fa-solid fa-circle-user" />Administrator</div>
-            <RouterLink to="/admin/settings" class="block px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"><font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-cog" />Settings</RouterLink>
-            <RouterLink to="/admin/logout"  class="block px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"><font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-right-from-bracket" />Log Out</RouterLink>
+          <div
+            v-if="showAccountControl"
+            class="absolute top-6 right-0 w-48 rounded-lg bg-white z-10 shadow-smd text-text transition-all"
+          >
+            <div class="absolute right-0 bg-white rounded-lg shadow-smd px-4 py-2">
+              <div class="px-2 py-1 font-semibold rounded-lg bg-text text-zinc-50 my-1">
+                <font-awesome-icon class="pr-2" icon="fa-solid fa-circle-user" />Administrator
+              </div>
+              <RouterLink
+                to="/admin/settings"
+                class="block px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"
+                ><font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-cog" />Settings</RouterLink
+              >
+              <RouterLink
+                to="/admin/logout"
+                class="block px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"
+                ><font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-right-from-bracket" />Log
+                Out</RouterLink
+              >
+            </div>
           </div>
-        </div>
         </Transition>
       </div>
     </div>

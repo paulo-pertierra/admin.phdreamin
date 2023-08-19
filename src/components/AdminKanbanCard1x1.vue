@@ -2,8 +2,7 @@
 defineProps({
   count: String,
   icon: String
-})
-
+});
 </script>
 
 <template>
