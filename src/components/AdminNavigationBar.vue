@@ -17,8 +17,7 @@ const adminAccessStore = useAdminAccessStore();
 
 function logOutAndRedirect() {
   adminAccessStore.logOutAdmin();
-  router.push("/auth");
-  console.log("some")
+  router.go(0);
 }
 </script>
 
@@ -52,9 +51,9 @@ function logOutAndRedirect() {
               <button
                 @click="logOutAndRedirect"
                 class="block w-full text-left px-2 py-1 font-semibold rounded-lg text-text hover:bg-gray-100 my-0.5"
-                ><font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-right-from-bracket" />Log
-                Out</button
               >
+                <font-awesome-icon class="text-lg pr-2" icon="fa-solid fa-right-from-bracket" />Log Out
+              </button>
             </div>
           </div>
         </Transition>

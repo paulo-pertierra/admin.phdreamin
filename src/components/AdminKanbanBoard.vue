@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import AdminKanbanCard1x1 from '@/components/AdminKanbanCard1x1.vue';
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -46,11 +47,11 @@ import AdminKanbanCard1x1 from '@/components/AdminKanbanCard1x1.vue';
       </div>
       <div class="absolute right-4 bottom-2 text-3xl font-bold text-text">200</div>
     </AdminKanbanCard1x1>
-    <AdminKanbanCard1x1 icon="fa-user-tag" count="1">
-      <button class="mx-auto w-full hover:scale-105 transition-all">
+    <AdminKanbanCard1x1 class="hover:scale-105 hover:bg-gray-100 transition-all" icon="fa-user-tag" count="1">
+      <RouterLink to="/scan" class="mx-auto w-full transition-all">
         <h1 class="text-center font-semibold">Scan a Registree</h1>
         <font-awesome-icon class="text-5xl text-red-600 w-full text-center" icon="fa-solid fa-camera" />
-      </button>
+      </RouterLink>
     </AdminKanbanCard1x1>
   </div>
 </template>

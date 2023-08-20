@@ -17,7 +17,7 @@ import {
   faUserGroup,
   faUserTag
 } from '@fortawesome/free-solid-svg-icons';
-import piniaPluginPersistedState from "pinia-plugin-persistedstate";
+import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
 import axios from 'axios';
 import { useAdminAccessStore } from './stores';
 import Swal from 'sweetalert2';
@@ -41,7 +41,7 @@ const pinia = createPinia();
 
 pinia.use(({ store }) => {
   store.router = markRaw(router);
-})
+});
 pinia.use(piniaPluginPersistedState);
 
 app.use(pinia);
@@ -53,12 +53,18 @@ app.mount('#app');
 const adminAccessStore = useAdminAccessStore();
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
-axios.interceptors.response.use((response) => response, (error) => {
-  if (error.response && error.response.status === 401) {
-    adminAccessStore.logOutAdmin();
-    Swal.fire("Expired Token", "You've been logged out", "warning");
-    router.push("/auth");
-    return;
+axios.defaults.headers.common.Authorization = 'Bearer ' + adminAccessStore.admin.token || '';
+console.log(axios.defaults.headers.common.Authorization);
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      adminAccessStore.logOutAdmin();
+      Swal.fire('Expired Token', "You've been logged out", 'warning');
+      router.push('/auth');
+      return;
+    }
+    return Promise.reject(error);
   }
-  return Promise.reject(error);
-})
+);
