@@ -2,7 +2,8 @@ import axios from 'axios';
 import { reactive, ref, type Ref } from 'vue';
 import { defineStore } from 'pinia';
 import Swal from 'sweetalert2';
-import type { Registree } from '@/types/registree';
+import type { Registree, RegistreeStat } from '@/types/registree.type';
+import type { Meta } from '@/types/meta.type';
 
 export const useAdminAccessStore = defineStore(
   'admin',
@@ -39,13 +40,18 @@ export const useAdminAccessStore = defineStore(
 export const useRegistreeStore = defineStore('registree', () => {
   // State
   const registrees: Ref<Registree[]> = ref([]);
-
+  const meta: Ref<Meta & {
+    stats: RegistreeStat
+  } | undefined> = ref(undefined)
+  const isloading = ref(true)
   // Actions
   const getRegistrees = async () => {
     axios
       .get('/register')
       .then((response) => {
         registrees.value = response.data.data;
+        meta.value = response.data.meta;
+        isloading.value = false;
       })
       .catch((error) => {
         Swal.fire('Error', 'Something went wrong.', 'error');
@@ -54,5 +60,5 @@ export const useRegistreeStore = defineStore('registree', () => {
   };
 
   // Interfaces
-  return { registrees, getRegistrees };
+  return { registrees, getRegistrees, meta, isloading };
 });

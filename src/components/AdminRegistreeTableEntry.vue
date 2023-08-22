@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import * as date from 'date-fns';
 
 import AdminRegistreeTableEntryStatus from './AdminRegistreeTableEntryStatus.vue';
-import type { Registree } from '@/types/registree';
+import type { Registree } from '@/types/registree.type';
 
 const props = defineProps<{
   registree: Registree;
@@ -48,3 +48,4 @@ const readableRegistrationDate = computed(() => {
     </td>
   </tr>
 </template>
+@/types/registree.type

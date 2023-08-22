@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Status } from '@/types/registree';
+import type { Status } from '@/types/registree.type';
 
 const props = defineProps<{
   status: Status;
@@ -17,3 +17,4 @@ const props = defineProps<{
     <font-awesome-icon class="text-[6pt] px-1 text-sky-400" icon="fa-solid fa-circle" />ATTENDED
   </div>
 </template>
+@/types/registree.type

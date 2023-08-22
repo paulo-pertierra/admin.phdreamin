@@ -14,3 +14,11 @@ export type Registree = {
 };
 
 export type Status = 'PENDING' | 'PAID' | 'ATTENDED';
+
+export type RegistreeStat = {
+  totalCount: number;
+  pendingCount: number;
+  paidCount: number;
+  attendedCount: number;
+  salesforceUsers: number;
+};
