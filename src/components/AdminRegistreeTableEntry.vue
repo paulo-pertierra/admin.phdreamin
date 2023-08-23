@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
-import * as date from 'date-fns';
+import { format } from 'date-fns';
 import { RouterLink } from 'vue-router';
 
 import AdminRegistreeTableEntryStatus from './AdminRegistreeTableEntryStatus.vue';
@@ -16,7 +16,7 @@ const registreeFullName = computed(() => {
 
 const readableRegistrationDate = computed(() => {
   if (props.registree.createdAt) {
-    return date.format(new Date(props.registree.createdAt), 'PPp');
+    return format(new Date(props.registree.createdAt), 'PPp');
   }
   return 'No date';
 });

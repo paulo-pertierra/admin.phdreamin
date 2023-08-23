@@ -1,10 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AdminDashboard from '@/components/AdminDashboard.vue';
-import HomeView from '@/views/HomeView.vue';
-import AuthView from '@/views/AuthView.vue';
-import ScanView from '@/views/ScanView.vue';
-import AdminRegistreeCard from '@/components/AdminRegistreeCard.vue';
-
 import { validateAdmin, validateNoAdmin } from './nav.guards';
 
 const router = createRouter({
@@ -22,26 +16,26 @@ const router = createRouter({
       path: '/auth',
       name: 'auth',
       beforeEnter: validateNoAdmin,
-      component: AuthView
+      component: () => import('@/views/AuthView.vue')
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       beforeEnter: validateAdmin,
-      component: HomeView,
+      component: () => import("@/views/HomeView.vue"),
       children: [
         {
           path: '',
-          component: AdminDashboard
+          component: () => import("@/components/AdminDashboard.vue")
         },
         {
           path: 'scan',
-          component: ScanView
+          component: () => import("@/views/ScanView.vue")
         },
         {
           path: 'registree/:uuid',
           name: 'registree',
-          component: AdminRegistreeCard
+          component: () => import("@/components/AdminRegistreeCard.vue")
         }
       ]
     },
@@ -49,7 +43,7 @@ const router = createRouter({
       path: '/scan',
       name: 'scan',
       beforeEnter: validateAdmin,
-      component: ScanView
+      component: () => import("@/views/ScanView.vue")
     }
   ]
 });

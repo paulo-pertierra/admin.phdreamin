@@ -2,7 +2,7 @@
 import { onMounted, ref, computed } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
-import * as date from 'date-fns';
+import { format } from 'date-fns';
 
 import type { Ref } from 'vue';
 import type { Registree, Status } from '@/types/registree.type';
@@ -31,7 +31,7 @@ const cardColor = computed(() => {
 
 const readableRegistrationDate = computed(() => {
   if (typeof registree?.value?.createdAt !== 'undefined') {
-    return date.format(new Date(registree?.value?.createdAt), 'PPp');
+    return format(new Date(registree?.value?.createdAt), 'PPp');
   }
   return 'No date';
 });
