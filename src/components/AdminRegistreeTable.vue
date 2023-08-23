@@ -20,7 +20,6 @@ function sortByColumn(column: keyof Registree, sort: 'asc' | 'desc') {
 }
 function toggleSortOrder() {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-  console.log(sortOrder.value);
 }
 
 const caretDirection = computed(() => (sortOrder.value === 'asc' ? 'fa-caret-down' : 'fa-caret-up'));
@@ -97,6 +96,6 @@ const caretDirection = computed(() => (sortOrder.value === 'asc' ? 'fa-caret-dow
         />
       </tbody>
     </table>
-    <AdminRegistreeTablePagination />
   </div>
+  <AdminRegistreeTablePagination />
 </template>

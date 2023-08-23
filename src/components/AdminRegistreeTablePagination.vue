@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRegistreeStore } from '@/stores';
 import { storeToRefs } from 'pinia';
 import type { StoreGeneric } from 'pinia';
