@@ -16,7 +16,7 @@ const registreeFullName = computed(() => {
 
 const readableRegistrationDate = computed(() => {
   if (props.registree.createdAt) {
-    return format(new Date(props.registree.createdAt), 'PPp');
+    return format(new Date(props.registree.createdAt), 'Pp');
   }
   return 'No date';
 });
@@ -29,22 +29,19 @@ const readableRegistrationDate = computed(() => {
         registreeFullName
       }}</RouterLink>
     </td>
-    <td class="flex truncate">
-      <div
-        v-show="registree.salesforceUser"
-        class="inline h-fit bg-sky-600 text-zinc-50 rounded-md w-fit px-1 text-center mr-1"
-      >
-        SF
-      </div>
-      <span v-show="registree.salesforceUserRole">{{ registree.salesforceUserRole }} at&nbsp;</span>
-      {{ registree.company }}
-    </td>
     <td>
-      <div class="w-48 truncate">
+        <div
+          v-show="registree.salesforceUser"
+          class="inline h-fit bg-sky-600 text-zinc-50 rounded-md w-32 truncate px-1 text-center mr-1"
+        >
+          SF
+        </div>
+        {{ registree.company }}
+    </td>
+    <td class="inline-block w-36 truncate">
         <a class="underline text-xs" :href="`mailto:${registree.contactEmail}`">{{
           registree.contactEmail
         }}</a>
-      </div>
     </td>
     <td>{{ registree.contactNumber }}</td>
     <td>{{ readableRegistrationDate }}</td>
@@ -55,4 +52,3 @@ const readableRegistrationDate = computed(() => {
     </td>
   </tr>
 </template>
-@/types/registree.type

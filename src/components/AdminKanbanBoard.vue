@@ -35,7 +35,7 @@ watch(registreeStore, () => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-4xl grid lg:grid-cols-5 gap-2 p-2 grid-cols-1">
+  <div class="mx-auto max-w-4xl grid lg:grid-cols-5 gap-2 grid-cols-2 p-4">
     <AdminKanbanCard1x1 icon="fa-user-clock" count="1">
       Pending Invites
       <div class="absolute left-2 bottom-2">

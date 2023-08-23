@@ -24,7 +24,7 @@ function logOutAndRedirect() {
 <template>
   <nav class="h-16 shadow-smd text-text mb-10 bg-white">
     <div class="max-w-5xl mx-auto flex items-center h-16 justify-between">
-      <h1 class="font-bold text-2xl">PHDreamin' 2023</h1>
+      <h1 class="font-bold text-2xl pl-4 sm:p-0">PHDreamin' 2023</h1>
       <div class="relative border-2">
         <button
           @click="toggleShowAccountControl()"

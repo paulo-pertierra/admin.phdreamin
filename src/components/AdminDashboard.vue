@@ -7,10 +7,10 @@ import AdminRegistreeTable from '@/components/AdminRegistreeTable.vue';
 
 <template>
   <AdminPageBody>
-    <h1 class="text-2xl">Statistics</h1>
+    <h1 class="text-2xl pl-4 sm:pl-0">Statistics</h1>
     <AdminKanbanBoard />
     <AdminSectionLine />
-    <h1 class="text-2xl">Users</h1>
+    <h1 class="text-2xl pl-4 sm:p-0">Users</h1>
     <AdminRegistreeTable />
   </AdminPageBody>
 </template>
