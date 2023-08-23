@@ -16,7 +16,7 @@ export const useAdminAccessStore = defineStore(
 
     // Actions
     const loginAdmin = async (username: string, password: string) => {
-      await axios
+      return await axios
         .post('/admin/auth/login', { username, password })
         .then((response) => {
           const { username, token } = response.data.data;

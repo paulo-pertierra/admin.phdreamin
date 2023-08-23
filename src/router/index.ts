@@ -16,7 +16,7 @@ const router = createRouter({
       path: '/auth',
       name: 'auth',
       beforeEnter: validateNoAdmin,
-      component: () => import('@/views/AuthView.vue')
+      component: () => import('@/views/LoginView.vue')
     },
     {
       path: '/dashboard',
