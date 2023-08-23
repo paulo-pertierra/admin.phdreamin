@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import * as date from 'date-fns';
+import { RouterLink } from 'vue-router';
 
 import AdminRegistreeTableEntryStatus from './AdminRegistreeTableEntryStatus.vue';
 import type { Registree } from '@/types/registree.type';
@@ -23,7 +24,11 @@ const readableRegistrationDate = computed(() => {
 
 <template>
   <tr>
-    <td>{{ registreeFullName }}</td>
+    <td>
+      <RouterLink class="underline" :to="`/dashboard/registree/${registree.uuid}`">{{
+        registreeFullName
+      }}</RouterLink>
+    </td>
     <td class="flex">
       <div
         v-show="registree.salesforceUser"
@@ -36,13 +41,15 @@ const readableRegistrationDate = computed(() => {
     </td>
     <td>
       <div class="w-48 truncate">
-        <a class="underline" :href="`mailto:${registree.contactEmail}`">{{ registree.contactEmail }}</a>
+        <a class="underline text-xs" :href="`mailto:${registree.contactEmail}`">{{
+          registree.contactEmail
+        }}</a>
       </div>
     </td>
     <td>{{ registree.contactNumber }}</td>
     <td>{{ readableRegistrationDate }}</td>
     <td>
-      <div class="px-1 bg-slate-700 text-zinc-50 rounded-lg flex items-center w-fit pr-2">
+      <div class="px-1 bg-slate-700 text-zinc-50 rounded-lg flex items-center w-fit pr-2 float-right">
         <AdminRegistreeTableEntryStatus :status="registree.status" />
       </div>
     </td>

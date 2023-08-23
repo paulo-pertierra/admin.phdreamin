@@ -40,14 +40,17 @@ export const useAdminAccessStore = defineStore(
 export const useRegistreeStore = defineStore('registree', () => {
   // State
   const registrees: Ref<Registree[]> = ref([]);
-  const meta: Ref<Meta & {
-    stats: RegistreeStat
-  } | undefined> = ref(undefined)
-  const isloading = ref(true)
+  const meta: Ref<
+    | (Meta & {
+        stats: RegistreeStat;
+      })
+    | undefined
+  > = ref(undefined);
+  const isloading = ref(true);
   // Actions
   const getRegistrees = async () => {
     axios
-      .get('/register')
+      .get('/registree')
       .then((response) => {
         registrees.value = response.data.data;
         meta.value = response.data.meta;
