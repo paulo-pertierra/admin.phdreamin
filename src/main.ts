@@ -18,7 +18,8 @@ import {
   faUserTag,
   faCaretLeft,
   faCaretRight,
-  faCaretUp
+  faCaretUp,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
 import axios from 'axios';
@@ -36,6 +37,7 @@ library.add(
   faUserTag,
   faUserCheck,
   faUserGroup,
+  faUser,
   faCamera,
   faCircle,
   faCaretLeft,

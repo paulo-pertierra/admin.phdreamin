@@ -78,14 +78,14 @@ const { queryParams } = storeToRefs(registreeStore);
       <div class="flex justify-evenly h-3/4 items-center text-2xl font-bold">
         <div
           @click="(queryParams.filterby = 'salesforceUser'), (queryParams.filter = 'true')"
-          class="select-none hover:cursor-pointer hover:color-gray-500 transition-all"
+          class="select-none hover:cursor-pointer hover:bg-gray-100 rounded-lg p-2 h-fit transition-all"
         >
           <h5 class="text-green-700 text-center">{{ registreeStore.meta?.stats.salesforceUsers }}</h5>
           <h6 class="text-xs text-green-700 text-center">Yes</h6>
         </div>
         <div
           @click="(queryParams.filterby = 'salesforceUser'), (queryParams.filter = 'false')"
-          class="select-none hover:cursor-pointer hover:drop-shadow-2xl transition-all"
+          class="select-none hover:cursor-pointer hover:bg-gray-100 rounded-lg p-2 transition-all"
         >
           <h5 class="text-orange-700 text-center">{{ nonSalesforceUsers }}</h5>
           <h6 class="text-xs text-orange-700 text-center">No</h6>
@@ -120,11 +120,11 @@ const { queryParams } = storeToRefs(registreeStore);
         {{ registreeStore.meta?.stats.attendedCount }}
       </div>
     </AdminKanbanCard1x1>
-    <AdminKanbanCard1x1 class="hover:scale-105 hover:bg-gray-100 transition-all" icon="fa-user-tag" count="1">
-      <RouterLink to="/dashboard/scan" class="mx-auto w-full transition-all">
+    <RouterLink class="select-none hover:cursor-pointer hover:color-gray-500 transition-all hover:drop-shadow-2xl" to="/dashboard/scan">
+    <AdminKanbanCard1x1 icon="fa-user-tag" count="1">
         <h1 class="text-center font-semibold">Scan a Registree</h1>
         <font-awesome-icon class="text-5xl text-red-600 w-full text-center" icon="fa-solid fa-camera" />
-      </RouterLink>
     </AdminKanbanCard1x1>
+  </RouterLink>
   </div>
 </template>

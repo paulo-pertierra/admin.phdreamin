@@ -51,8 +51,8 @@ function submitNewRegistreeStatus(status: Status) {
 </script>
 
 <template>
-  <RouterLink class="max-w-sm mx-auto w-full block px-2" to="/dashboard"
-    ><font-awesome-icon icon="fa-solid fa-caret-left" /> Go Home</RouterLink
+  <RouterLink class="max-w-sm mx-auto w-full block px-2 hover:underline" to="/dashboard"
+    ><font-awesome-icon class="mr-2" icon="fa-solid fa-caret-left" />Go Home</RouterLink
   >
   <div class="relative max-w-sm mx-auto shadow-2xl rounded-lg overflow-hidden transition-all">
     <div
@@ -75,7 +75,13 @@ function submitNewRegistreeStatus(status: Status) {
         'border-green-500': cardColor === 'green'
       }"
     >
-      <img src="https://placehold.co/120" class="rounded-full" alt="" />
+      <div class="w-[120px] h-[120px] flex items-center justify-center bg-white overflow-hidden rounded-full">
+        <font-awesome-icon class="text-7xl transition-all text-white"       :class="{
+        'text-orange-500': cardColor === 'orange',
+        'text-sky-500': cardColor === 'sky',
+        'text-green-500': cardColor === 'green'
+      }" icon="fa-solid fa-user"></font-awesome-icon>
+      </div>
     </div>
     <div v-if="!cardLoading">
       <div class="h-64 pt-20 text-center">

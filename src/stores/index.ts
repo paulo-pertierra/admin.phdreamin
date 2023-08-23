@@ -78,6 +78,7 @@ export const useRegistreeStore = defineStore('registree', () => {
           Swal.fire('Error', 'Something went wrong.', 'error');
           console.error(error);
         });
+      return
     }
     axios
       .get('/registree', { params: queryParams })
@@ -90,6 +91,7 @@ export const useRegistreeStore = defineStore('registree', () => {
         Swal.fire('Error', 'Something went wrong.', 'error');
         console.error(error);
       });
+      return
   };
 
   // Interfaces
