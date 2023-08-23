@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref, watch, type Ref, computed } from 'vue';
+import { onMounted, ref, type Ref, computed } from 'vue';
 import { useRegistreeStore } from '@/stores';
 import AdminRegistreeTableEntryVue from '@/components/AdminRegistreeTableEntry.vue';
 import AdminRegistreeTablePagination from './AdminRegistreeTablePagination.vue';
@@ -7,7 +7,7 @@ import type { Registree } from '@/types/registree.type';
 
 const registreeStore = useRegistreeStore();
 onMounted(() => {
-  registreeStore.getRegistrees();
+  registreeStore.getRegistrees(true);
 });
 
 const currentColumn = ref<keyof Registree>('createdAt');
@@ -20,7 +20,7 @@ function sortByColumn(column: keyof Registree, sort: 'asc' | 'desc') {
 }
 function toggleSortOrder() {
   sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-  console.log(sortOrder.value)
+  console.log(sortOrder.value);
 }
 
 const caretDirection = computed(() => (sortOrder.value === 'asc' ? 'fa-caret-down' : 'fa-caret-up'));
@@ -31,12 +31,14 @@ const caretDirection = computed(() => (sortOrder.value === 'asc' ? 'fa-caret-dow
     <table class="my-4 min-w-max max-w-5xl table-fixed mx-auto">
       <thead class="text-sm text-left font-semibold border-b-2 leading-7">
         <td class="w-48">
-          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'lastName'), sortOrder)">FULL NAME
+          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'lastName'), sortOrder)">
+            FULL NAME
             <font-awesome-icon
               v-show="currentColumn === 'lastName'"
               class="ml-2"
               :icon="'fa-solid ' + caretDirection"
-            /></button>
+            />
+          </button>
         </td>
         <td class="w-32">
           <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'company'), sortOrder)">
@@ -47,29 +49,45 @@ const caretDirection = computed(() => (sortOrder.value === 'asc' ? 'fa-caret-dow
             />
           </button>
         </td>
-        <td class="inline-block mr-8 truncate"><button @click="toggleSortOrder(), sortByColumn((currentColumn = 'contactEmail'), sortOrder)">EMAIL ADDRESS
-          <font-awesome-icon
+        <td class="inline-block mr-8 truncate">
+          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'contactEmail'), sortOrder)">
+            EMAIL ADDRESS
+            <font-awesome-icon
               v-show="currentColumn === 'contactEmail'"
               class="ml-2"
               :icon="'fa-solid ' + caretDirection"
-            /></button></td>
-        <td class="w-32 mr-4"><button @click="toggleSortOrder(), sortByColumn((currentColumn = 'contactNumber'), sortOrder)">PHONE
-          <font-awesome-icon
+            />
+          </button>
+        </td>
+        <td class="w-32 mr-4">
+          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'contactNumber'), sortOrder)">
+            PHONE
+            <font-awesome-icon
               v-show="currentColumn === 'contactNumber'"
               class="ml-2"
               :icon="'fa-solid ' + caretDirection"
-            /></button></td>
-        <td class="w-48"><button @click="toggleSortOrder(), sortByColumn((currentColumn = 'createdAt'), sortOrder)">DATE REGISTERED<font-awesome-icon
+            />
+          </button>
+        </td>
+        <td class="w-48">
+          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'createdAt'), sortOrder)">
+            DATE REGISTERED<font-awesome-icon
               v-show="currentColumn === 'createdAt'"
               class="ml-2"
               :icon="'fa-solid ' + caretDirection"
-            /></button></td>
-        <td><button @click="toggleSortOrder(), sortByColumn((currentColumn = 'status'), sortOrder)">STATUS
-          <font-awesome-icon
+            />
+          </button>
+        </td>
+        <td>
+          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'status'), sortOrder)">
+            STATUS
+            <font-awesome-icon
               v-show="currentColumn === 'status'"
               class="ml-2"
               :icon="'fa-solid ' + caretDirection"
-            /></button></td>
+            />
+          </button>
+        </td>
       </thead>
       <tbody class="text-left text-sm">
         <AdminRegistreeTableEntryVue

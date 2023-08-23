@@ -24,9 +24,15 @@ function logOutAndRedirect() {
 
 <template>
   <nav class="h-16 shadow-smd text-text mb-10 bg-white">
-    <div class="max-w-5xl mx-auto flex items-center h-16 justify-between border">
-      <h1 class=""><RouterLink class="font-bold text-2xl p-1 ml-2 hover:bg-text hover:text-zinc-50 sm:p-1.5 rounded-lg" to="/dashboard">PHDreamin' 2023</RouterLink></h1>
-      <div class="relative border-2">
+    <div class="max-w-5xl mx-auto flex items-center h-16 justify-between">
+      <h1 class="">
+        <RouterLink
+          class="font-bold text-2xl p-1 ml-2 hover:bg-text hover:text-zinc-50 sm:p-1.5 rounded-lg"
+          to="/dashboard"
+          >PHDreamin' 2023</RouterLink
+        >
+      </h1>
+      <div class="relative">
         <button
           @click="toggleShowAccountControl()"
           class="absolute -translate-y-1/2 top-1/2 right-0 text-sm font-semibold flex items-center hover:bg-text hover:text-white p-2 rounded-lg transition-colors"

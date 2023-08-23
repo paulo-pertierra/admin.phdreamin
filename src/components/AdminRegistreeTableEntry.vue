@@ -39,7 +39,9 @@ const readableRegistrationDate = computed(() => {
       {{ registree.company }}
     </td>
     <td class="inline-block w-36 truncate">
-      <a class="hover:underline text-xs" :href="`mailto:${registree.contactEmail}`">{{ registree.contactEmail }}</a>
+      <a class="hover:underline text-xs" :href="`mailto:${registree.contactEmail}`">{{
+        registree.contactEmail
+      }}</a>
     </td>
     <td>{{ registree.contactNumber }}</td>
     <td>{{ readableRegistrationDate }}</td>

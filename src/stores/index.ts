@@ -64,7 +64,21 @@ export const useRegistreeStore = defineStore('registree', () => {
     getRegistrees();
   });
 
-  const getRegistrees = async () => {
+  const getRegistrees = async (reset: boolean = false) => {
+    isloading.value = true;
+    if (reset) {
+      axios
+        .get('/registree')
+        .then((response) => {
+          registrees.value = response.data.data;
+          meta.value = response.data.meta;
+          isloading.value = false;
+        })
+        .catch((error) => {
+          Swal.fire('Error', 'Something went wrong.', 'error');
+          console.error(error);
+        });
+    }
     axios
       .get('/registree', { params: queryParams })
       .then((response) => {
