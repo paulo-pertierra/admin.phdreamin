@@ -25,23 +25,21 @@ const readableRegistrationDate = computed(() => {
 <template>
   <tr>
     <td>
-      <RouterLink class="underline" :to="`/dashboard/registree/${registree.uuid}`">{{
+      <RouterLink class="hover:underline" :to="`/dashboard/registree/${registree.uuid}`">{{
         registreeFullName
       }}</RouterLink>
     </td>
     <td>
-        <div
-          v-show="registree.salesforceUser"
-          class="inline h-fit bg-sky-600 text-zinc-50 rounded-md w-32 truncate px-1 text-center mr-1"
-        >
-          SF
-        </div>
-        {{ registree.company }}
+      <div
+        v-show="registree.salesforceUser"
+        class="inline h-fit bg-sky-600 text-zinc-50 rounded-md w-32 truncate pl-1 text-center mr-1"
+      >
+        SF
+      </div>
+      {{ registree.company }}
     </td>
     <td class="inline-block w-36 truncate">
-        <a class="underline text-xs" :href="`mailto:${registree.contactEmail}`">{{
-          registree.contactEmail
-        }}</a>
+      <a class="hover:underline text-xs" :href="`mailto:${registree.contactEmail}`">{{ registree.contactEmail }}</a>
     </td>
     <td>{{ registree.contactNumber }}</td>
     <td>{{ readableRegistrationDate }}</td>

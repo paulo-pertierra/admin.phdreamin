@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref, computed } from 'vue';
 import axios from 'axios';
-import { useRoute } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import { format } from 'date-fns';
 
 import type { Ref } from 'vue';
@@ -14,12 +14,17 @@ const router = useRouter();
 
 const registree: Ref<Registree | undefined> = ref();
 
+const cardLoading = ref(true);
 onMounted(() => {
-  axios.get(`/registree/${route.params.uuid}`).then((response) => {
-    registree.value = response.data.data;
-  }).catch(() => {
-    Swal.fire("Error.", "Could not complete your request.", "error");
-  });
+  axios
+    .get(`/registree/${route.params.uuid}`)
+    .then((response) => {
+      registree.value = response.data.data;
+      cardLoading.value = false;
+    })
+    .catch(() => {
+      Swal.fire('Error.', 'Could not complete your request.', 'error');
+    });
 });
 
 const registreeFullname = computed(() => registree.value?.firstName + ' ' + registree.value?.lastName);
@@ -40,18 +45,21 @@ const readableRegistrationDate = computed(() => {
 
 function submitNewRegistreeStatus(status: Status) {
   axios.put(`/registree/${registree.value?.uuid}?status=${status}`).then(() => {
-    Swal.fire('Success', `User is successfully set to ${status}`);
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 3000);
+    axios
+    .get(`/registree/${route.params.uuid}`)
+    .then((response) => {
+      registree.value = response.data.data;
+    })
   });
+  Swal.fire('Success', `User is successfully set to ${status}`);
 }
 </script>
 
 <template>
-  <div class="relative max-w-sm mx-auto shadow-2xl rounded-lg overflow-hidden">
+      <RouterLink class="max-w-sm mx-auto w-full block px-2" to="/dashboard"><font-awesome-icon icon="fa-solid fa-caret-left" /> Go Home</RouterLink>
+  <div class="relative max-w-sm mx-auto shadow-2xl rounded-lg overflow-hidden transition-all">
     <div
-      class="relative h-48"
+      class="relative h-48 transition-colors duration-500"
       :class="{
         'bg-orange-500': cardColor === 'orange',
         'bg-sky-500': cardColor === 'sky',
@@ -62,14 +70,18 @@ function submitNewRegistreeStatus(status: Status) {
         {{ registree?.status }}<font-awesome-icon class="pl-2" icon="fa-solid fa-circle"></font-awesome-icon>
       </div>
     </div>
-    <div class="absolute left-1/2 rounded-full border-4 -translate-x-1/2 -translate-y-1/2" :class="{
+    <div
+      class="absolute left-1/2 rounded-full border-4 -translate-x-1/2 -translate-y-1/2 transition-colors duration-500"
+      :class="{
         'border-orange-500': cardColor === 'orange',
         'border-sky-500': cardColor === 'sky',
         'border-green-500': cardColor === 'green'
-      }">
+      }"
+    >
       <img src="https://placehold.co/120" class="rounded-full" alt="" />
     </div>
-    <div class="h-64 pt-20 text-center">
+    <div v-if="!cardLoading">
+      <div class="h-64 pt-20 text-center">
       <p class="font-semibold">{{ registreeFullname }}</p>
       <div
         v-show="registree?.salesforceUser"
@@ -100,6 +112,10 @@ function submitNewRegistreeStatus(status: Status) {
       >
         ATTENDED
       </button>
+    </div>
+    </div>
+    <div v-else class="flex w-full items-center justify-center h-64">
+      <font-awesome-icon class="animate-spin text-gray-400" icon="fa-solid fa-cog" />
     </div>
   </div>
 </template>

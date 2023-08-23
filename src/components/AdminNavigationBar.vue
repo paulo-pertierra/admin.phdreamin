@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useAdminAccessStore } from '@/stores';
 import { ref } from 'vue';
 import router from '@/router';
+import { RouterLink } from 'vue-router';
 
 library.add(faCircleUser, faCaretDown, faCog, faRightFromBracket);
 
@@ -23,8 +24,8 @@ function logOutAndRedirect() {
 
 <template>
   <nav class="h-16 shadow-smd text-text mb-10 bg-white">
-    <div class="max-w-5xl mx-auto flex items-center h-16 justify-between">
-      <h1 class="font-bold text-2xl pl-4 sm:p-0">PHDreamin' 2023</h1>
+    <div class="max-w-5xl mx-auto flex items-center h-16 justify-between border">
+      <h1 class=""><RouterLink class="font-bold text-2xl p-1 ml-2 hover:bg-text hover:text-zinc-50 sm:p-1.5 rounded-lg" to="/dashboard">PHDreamin' 2023</RouterLink></h1>
       <div class="relative border-2">
         <button
           @click="toggleShowAccountControl()"

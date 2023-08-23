@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { reactive, ref, type Ref } from 'vue';
+import { reactive, ref, watch, type Ref } from 'vue';
 import { defineStore } from 'pinia';
 import Swal from 'sweetalert2';
 import type { Registree, RegistreeStat } from '@/types/registree.type';
@@ -46,18 +46,24 @@ export const useRegistreeStore = defineStore('registree', () => {
       })
     | undefined
   > = ref(undefined);
+
   const isloading = ref(true);
-  // State
+
   const queryParams: {
-    sortby?: keyof Registree;
-    sort?: 'asc' | 'desc';
+    orderby?: keyof Registree;
+    order?: 'asc' | 'desc';
     filterby?: keyof Registree;
     filter?: string;
-    page?: number
+    page?: number;
   } = reactive({
     page: 1
-  })
+  });
+
   // Actions
+  watch(queryParams, () => {
+    getRegistrees();
+  });
+
   const getRegistrees = async () => {
     axios
       .get('/registree', { params: queryParams })

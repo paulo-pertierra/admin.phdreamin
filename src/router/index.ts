@@ -22,20 +22,20 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       beforeEnter: validateAdmin,
-      component: () => import("@/views/HomeView.vue"),
+      component: () => import('@/views/HomeView.vue'),
       children: [
         {
           path: '',
-          component: () => import("@/components/AdminDashboard.vue")
+          component: () => import('@/components/AdminDashboard.vue')
         },
         {
           path: 'scan',
-          component: () => import("@/views/ScanView.vue")
+          component: () => import('@/views/ScanView.vue')
         },
         {
           path: 'registree/:uuid',
           name: 'registree',
-          component: () => import("@/components/AdminRegistreeCard.vue")
+          component: () => import('@/components/AdminRegistreeCard.vue')
         }
       ]
     },
@@ -43,7 +43,7 @@ const router = createRouter({
       path: '/scan',
       name: 'scan',
       beforeEnter: validateAdmin,
-      component: () => import("@/views/ScanView.vue")
+      component: () => import('@/views/ScanView.vue')
     }
   ]
 });

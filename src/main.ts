@@ -15,7 +15,10 @@ import {
   faUserCheck,
   faUserClock,
   faUserGroup,
-  faUserTag
+  faUserTag,
+  faCaretLeft,
+  faCaretRight,
+  faCaretUp
 } from '@fortawesome/free-solid-svg-icons';
 import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
 import axios from 'axios';
@@ -25,6 +28,7 @@ import { markRaw } from 'vue';
 
 library.add(
   faCaretDown,
+  faCaretUp,
   faCircleUser,
   faCog,
   faRightFromBracket,
@@ -33,7 +37,9 @@ library.add(
   faUserCheck,
   faUserGroup,
   faCamera,
-  faCircle
+  faCircle,
+  faCaretLeft,
+  faCaretRight
 );
 
 const app = createApp(App);

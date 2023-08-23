@@ -46,7 +46,7 @@ watch(registreeStore, () => {
       </div>
     </AdminKanbanCard1x1>
     <AdminKanbanCard1x1 icon="fa-user-tag" count="1">
-      Paid, Not Arrived
+      Paid
       <div class="absolute left-2 bottom-2">
         <font-awesome-icon class="text-5xl text-blue-500" icon="fa-solid fa-user-tag" />
       </div>
@@ -83,7 +83,7 @@ watch(registreeStore, () => {
       </div>
     </AdminKanbanCard1x1>
     <AdminKanbanCard1x1 icon="fa-user-tag" count="1">
-      Arrived
+      Paid & Attended
       <div class="absolute left-2 bottom-2">
         <font-awesome-icon class="text-5xl text-green-600" icon="fa-solid fa-user-check" />
       </div>
