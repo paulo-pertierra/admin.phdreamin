@@ -17,7 +17,7 @@ module.exports = {
         "text": "#292929"
       },
       fontFamily: {
-        'sans': ['Inter', 'ui-sans-serif', ]
+        'sans': ['Inter', 'ui-sans-serif', 'sans-serif']
       }
     },
   },
