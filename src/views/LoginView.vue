@@ -58,9 +58,6 @@ async function loginAndRedirect() {
           </form>
         </div>
       </div>
-      <div class="flex justify-center">
-        <img src="../assets/einstein.png" alt="" class="h-[50%] mx-auto" />
-      </div>
     </div>
   </div>
 </template>
