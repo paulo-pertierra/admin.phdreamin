@@ -16,9 +16,9 @@ async function loginAndRedirect() {
 
 <template>
   <div class="flex justify-center items-center min-h-screen py-24 bg-gray-50">
-    <div class="grid grid-cols-2 w-3/4">
+    <div class="max-w-lg w-full">
       <div class="flex justify-center py-10 bg-gray-50">
-        <div class="w-5/6 p-12 bg-white border border-gray-200 shadow rounded-lg">
+        <div class="w-full p-12 bg-white border border-gray-200 shadow rounded-lg">
           <form class="">
             <div class="mb-6">
               <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Admin Username</label>
