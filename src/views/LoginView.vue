@@ -19,7 +19,6 @@ async function loginAndRedirect() {
     <div class="max-w-lg w-full">
       <div class="flex justify-center py-10 bg-gray-50">
         <div class="w-full p-12 bg-white border border-gray-200 shadow rounded-lg">
-          <form class="">
             <div class="mb-6">
               <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Admin Username</label>
               <input
@@ -27,7 +26,6 @@ async function loginAndRedirect() {
                 id="username"
                 class="w-full p-2.5 text-sm border rounded-lg bg-gray-50 text-gray-900 focus:ring focus:border-blue-500"
                 placeholder="admin.name"
-                required
               />
             </div>
             <div class="mb-6">
@@ -38,24 +36,14 @@ async function loginAndRedirect() {
                 id="password"
                 placeholder="********"
                 class="w-full p-2.5 text-sm border rounded-lg bg-gray-50 text-gray-900 focus:ring focus:border-blue-500"
-                required
-              />
-            </div>
-            <div class="mb-6 flex items-center">
-              <input
-                id="remember"
-                type="checkbox"
-                class="h-4 w-4 border rounded bg-gray-50 focus:ring focus:border-blue-300"
-                required
               />
             </div>
             <button
-              @click="loginAndRedirect()"
+              @click="loginAndRedirect"
               class="w-full py-2.5 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg"
             >
               Submit
             </button>
-          </form>
         </div>
       </div>
     </div>

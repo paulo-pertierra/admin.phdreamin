@@ -17,6 +17,8 @@ const registree: Ref<Registree | undefined> = ref();
 onMounted(() => {
   axios.get(`/registree/${route.params.uuid}`).then((response) => {
     registree.value = response.data.data;
+  }).catch(() => {
+    Swal.fire("Error.", "Could not complete your request.", "error");
   });
 });
 
@@ -41,7 +43,7 @@ function submitNewRegistreeStatus(status: Status) {
     Swal.fire('Success', `User is successfully set to ${status}`);
     setTimeout(() => {
       router.push('/dashboard');
-    }, 5000);
+    }, 3000);
   });
 }
 </script>
@@ -60,7 +62,11 @@ function submitNewRegistreeStatus(status: Status) {
         {{ registree?.status }}<font-awesome-icon class="pl-2" icon="fa-solid fa-circle"></font-awesome-icon>
       </div>
     </div>
-    <div class="absolute left-1/2 rounded-full border-4 border-orange-500 -translate-x-1/2 -translate-y-1/2">
+    <div class="absolute left-1/2 rounded-full border-4 -translate-x-1/2 -translate-y-1/2" :class="{
+        'border-orange-500': cardColor === 'orange',
+        'border-sky-500': cardColor === 'sky',
+        'border-green-500': cardColor === 'green'
+      }">
       <img src="https://placehold.co/120" class="rounded-full" alt="" />
     </div>
     <div class="h-64 pt-20 text-center">

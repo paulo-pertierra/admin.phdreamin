@@ -29,7 +29,7 @@ const readableRegistrationDate = computed(() => {
         registreeFullName
       }}</RouterLink>
     </td>
-    <td class="flex">
+    <td class="flex truncate">
       <div
         v-show="registree.salesforceUser"
         class="inline h-fit bg-sky-600 text-zinc-50 rounded-md w-fit px-1 text-center mr-1"

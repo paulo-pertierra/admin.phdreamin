@@ -47,10 +47,20 @@ export const useRegistreeStore = defineStore('registree', () => {
     | undefined
   > = ref(undefined);
   const isloading = ref(true);
+  // State
+  const queryParams: {
+    sortby?: keyof Registree;
+    sort?: 'asc' | 'desc';
+    filterby?: keyof Registree;
+    filter?: string;
+    page?: number
+  } = reactive({
+    page: 1
+  })
   // Actions
   const getRegistrees = async () => {
     axios
-      .get('/registree')
+      .get('/registree', { params: queryParams })
       .then((response) => {
         registrees.value = response.data.data;
         meta.value = response.data.meta;
@@ -63,5 +73,5 @@ export const useRegistreeStore = defineStore('registree', () => {
   };
 
   // Interfaces
-  return { registrees, getRegistrees, meta, isloading };
+  return { registrees, getRegistrees, meta, isloading, queryParams };
 });
