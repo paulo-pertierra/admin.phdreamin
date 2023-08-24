@@ -67,18 +67,10 @@ export const useRegistreeStore = defineStore('registree', () => {
   const getRegistrees = async (reset: boolean = false) => {
     isloading.value = true;
     if (reset) {
-      axios
-        .get('/registree')
-        .then((response) => {
-          registrees.value = response.data.data;
-          meta.value = response.data.meta;
-          isloading.value = false;
-        })
-        .catch((error) => {
-          Swal.fire('Error', 'Something went wrong.', 'error');
-          console.error(error);
-        });
-      return
+      queryParams.filter = undefined
+      queryParams.filterby = undefined
+      queryParams.orderby = undefined
+      queryParams.order = undefined
     }
     axios
       .get('/registree', { params: queryParams })
@@ -91,7 +83,6 @@ export const useRegistreeStore = defineStore('registree', () => {
         Swal.fire('Error', 'Something went wrong.', 'error');
         console.error(error);
       });
-      return
   };
 
   // Interfaces
