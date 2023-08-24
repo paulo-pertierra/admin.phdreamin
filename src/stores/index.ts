@@ -55,7 +55,7 @@ export const useRegistreeStore = defineStore('registree', () => {
     filterby?: keyof Registree;
     filter?: string;
     page?: number;
-  } = reactive({
+  } & { sfusers?: 'true' | 'false' } = reactive({
     page: 1
   });
 
@@ -71,6 +71,7 @@ export const useRegistreeStore = defineStore('registree', () => {
       queryParams.filterby = undefined
       queryParams.orderby = undefined
       queryParams.order = undefined
+      queryParams.sfusers = undefined
     }
     axios
       .get('/registree', { params: queryParams })

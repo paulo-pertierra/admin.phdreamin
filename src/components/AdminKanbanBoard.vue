@@ -77,14 +77,14 @@ const { queryParams } = storeToRefs(registreeStore);
       <h4>Salesforce Users</h4>
       <div class="flex justify-evenly h-3/4 items-center text-2xl font-bold">
         <div
-          @click="(queryParams.filterby = 'salesforceUser'), (queryParams.filter = 'true')"
+          @click="(queryParams.sfusers = 'false')"
           class="select-none hover:cursor-pointer hover:bg-gray-100 rounded-lg p-2 h-fit transition-all"
         >
           <h5 class="text-green-700 text-center">{{ registreeStore.meta?.stats.salesforceUsers }}</h5>
           <h6 class="text-xs text-green-700 text-center">Yes</h6>
         </div>
         <div
-          @click="(queryParams.filterby = 'salesforceUser'), (queryParams.filter = 'false')"
+          @click="(queryParams.sfusers = 'true')"
           class="select-none hover:cursor-pointer hover:bg-gray-100 rounded-lg p-2 transition-all"
         >
           <h5 class="text-orange-700 text-center">{{ nonSalesforceUsers }}</h5>
