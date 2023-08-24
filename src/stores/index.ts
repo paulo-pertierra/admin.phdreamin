@@ -59,19 +59,24 @@ export const useRegistreeStore = defineStore('registree', () => {
     page: 1
   });
 
+  const reset = ref(true);
   // Actions
   watch(queryParams, () => {
     getRegistrees();
   });
+  watch(reset, () =>{
+    getRegistrees();
+  })
 
-  const getRegistrees = async (reset: boolean = false) => {
+  const getRegistrees = async () => {
     isloading.value = true;
-    if (reset) {
-      queryParams.filter = undefined
-      queryParams.filterby = undefined
-      queryParams.orderby = undefined
-      queryParams.order = undefined
-      queryParams.sfusers = undefined
+    if (reset.value) {
+      queryParams.filter = undefined;
+      queryParams.filterby = undefined;
+      queryParams.orderby = undefined;
+      queryParams.order = undefined;
+      queryParams.sfusers = undefined;
+      reset.value = false;
     }
     axios
       .get('/registree', { params: queryParams })
@@ -87,5 +92,5 @@ export const useRegistreeStore = defineStore('registree', () => {
   };
 
   // Interfaces
-  return { registrees, getRegistrees, meta, isloading, queryParams };
+  return { registrees, getRegistrees, meta, isloading, queryParams, reset };
 });

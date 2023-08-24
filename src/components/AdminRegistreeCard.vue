@@ -76,11 +76,15 @@ function submitNewRegistreeStatus(status: Status) {
       }"
     >
       <div class="w-[120px] h-[120px] flex items-center justify-center bg-white overflow-hidden rounded-full">
-        <font-awesome-icon class="text-7xl transition-all text-white"       :class="{
-        'text-orange-500': cardColor === 'orange',
-        'text-sky-500': cardColor === 'sky',
-        'text-green-500': cardColor === 'green'
-      }" icon="fa-solid fa-user"></font-awesome-icon>
+        <font-awesome-icon
+          class="text-7xl transition-all text-white"
+          :class="{
+            'text-orange-500': cardColor === 'orange',
+            'text-sky-500': cardColor === 'sky',
+            'text-green-500': cardColor === 'green'
+          }"
+          icon="fa-solid fa-user"
+        ></font-awesome-icon>
       </div>
     </div>
     <div v-if="!cardLoading">

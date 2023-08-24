@@ -7,7 +7,7 @@ import AdminRegistreeTable from '@/components/AdminRegistreeTable.vue';
 
 <template>
   <AdminPageBody>
-    <h1 class="text-2xl pl-4 sm:pl-0">Statistics</h1>
+    <h1 class="text-2xl pl-4 sm:pl-0">Statistics <span class="text-xs">(click to filter)</span></h1>
     <AdminKanbanBoard />
     <AdminSectionLine />
     <h1 class="text-2xl pl-4 sm:p-0">Users</h1>

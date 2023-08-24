@@ -9,14 +9,14 @@ const { meta } = storeToRefs<StoreGeneric>(registreeStore);
 const page = ref(1);
 
 function setPage(count: number) {
-  page.value = page.value + count
+  page.value = page.value + count;
 }
 
 watch(page, () => {
   if (page.value < meta.value.pagination.pageCount) page.value = 1;
   if (page.value > meta.value.pagination.pageCount) page.value = meta.value.pagination.pageCount;
-  registreeStore.queryParams.page = page.value
-})
+  registreeStore.queryParams.page = page.value;
+});
 </script>
 
 <template>

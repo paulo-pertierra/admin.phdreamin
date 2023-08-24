@@ -1,90 +1,74 @@
 <script lang="ts" setup>
-import { onMounted, ref, type Ref, computed } from 'vue';
+import { onMounted, ref, type Ref, computed, type CreateAppFunction, watch } from 'vue';
 import { useRegistreeStore } from '@/stores';
 import AdminRegistreeTableEntryVue from '@/components/AdminRegistreeTableEntry.vue';
 import AdminRegistreeTablePagination from './AdminRegistreeTablePagination.vue';
 import type { Registree } from '@/types/registree.type';
+import { storeToRefs } from 'pinia';
 
 const registreeStore = useRegistreeStore();
 onMounted(() => {
-  registreeStore.getRegistrees(true);
+  registreeStore.getRegistrees();
 });
 
-const currentColumn = ref<keyof Registree>('createdAt');
+const caretDirection = computed(() => registreeStore.queryParams.order === 'asc' ? 'fa-caret-down' : 'fa-caret-up');
 
-const sortOrder: Ref<'asc' | 'desc'> = ref('desc');
-function sortByColumn(column: keyof Registree, sort: 'asc' | 'desc') {
+const currentColumn = ref('createdAt');
+
+
+function handleSort(column: keyof Registree) {
   registreeStore.queryParams.orderby = column;
-  registreeStore.queryParams.order = sort;
-  return;
+  if (column === currentColumn.value) {
+    registreeStore.queryParams.order = registreeStore.queryParams.order === 'asc' ? 'desc' : 'asc'
+    return;
+  }
+  currentColumn.value = column;
+  if (currentColumn.value === 'createdAt')
+    registreeStore.queryParams.order ='desc'
+  else 
+    registreeStore.queryParams.order = 'asc'
 }
-function toggleSortOrder() {
-  sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
-}
-
-const caretDirection = computed(() => (sortOrder.value === 'asc' ? 'fa-caret-down' : 'fa-caret-up'));
 </script>
 
 <template>
-  <div class="overflow-auto max-w-4xl mx-auto">
+  <div class="max-w-4xl mx-auto flex items-center justify-end">
+    <button class="p-1.5 rounded text-xs border hover:bg-gray-200" @click="registreeStore.reset = true">Reset</button>
+  </div>
+  <div class="overflow-auto max-w-5xl mx-auto">
     <table class="my-4 min-w-max max-w-5xl table-fixed mx-auto">
       <thead class="text-sm text-left font-semibold border-b-2 leading-7">
         <td class="w-48">
-          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'lastName'), sortOrder)">
+          <button @click="handleSort('lastName')">
             FULL NAME
-            <font-awesome-icon
-              v-show="currentColumn === 'lastName'"
-              class="ml-2"
-              :icon="'fa-solid ' + caretDirection"
-            />
+            <font-awesome-icon v-show="currentColumn === 'lastName'" class="ml-2" :icon="'fa-solid ' + caretDirection" />
           </button>
         </td>
         <td class="w-32">
-          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'company'), sortOrder)">
-            COMPANY<font-awesome-icon
-              v-show="currentColumn === 'company'"
-              class="ml-2"
-              :icon="'fa-solid ' + caretDirection"
-            />
+          <button @click="handleSort('company')">
+            COMPANY<font-awesome-icon v-show="currentColumn === 'company'" class="ml-2" :icon="'fa-solid ' + caretDirection" />
           </button>
         </td>
         <td class="inline-block mr-8 truncate">
-          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'contactEmail'), sortOrder)">
+          <button @click="handleSort('contactEmail')">
             EMAIL ADDRESS
-            <font-awesome-icon
-              v-show="currentColumn === 'contactEmail'"
-              class="ml-2"
-              :icon="'fa-solid ' + caretDirection"
-            />
+            <font-awesome-icon v-show="currentColumn === 'contactEmail'" class="ml-2" :icon="'fa-solid ' + caretDirection" />
           </button>
         </td>
         <td class="w-32 mr-4">
-          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'contactNumber'), sortOrder)">
+          <button @click="handleSort('contactNumber')">
             PHONE
-            <font-awesome-icon
-              v-show="currentColumn === 'contactNumber'"
-              class="ml-2"
-              :icon="'fa-solid ' + caretDirection"
-            />
+            <font-awesome-icon v-show="currentColumn === 'contactNumber'" class="ml-2" :icon="'fa-solid ' + caretDirection" />
           </button>
         </td>
         <td class="w-48">
-          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'createdAt'), sortOrder)">
-            DATE REGISTERED<font-awesome-icon
-              v-show="currentColumn === 'createdAt'"
-              class="ml-2"
-              :icon="'fa-solid ' + caretDirection"
-            />
+          <button @click="handleSort('createdAt')">
+            DATE REGISTERED<font-awesome-icon v-show="currentColumn === 'createdAt'" class="ml-2" :icon="'fa-solid ' + caretDirection" />
           </button>
         </td>
         <td>
-          <button @click="toggleSortOrder(), sortByColumn((currentColumn = 'status'), sortOrder)">
+          <button @click="handleSort('status')">
             STATUS
-            <font-awesome-icon
-              v-show="currentColumn === 'status'"
-              class="ml-2"
-              :icon="'fa-solid ' + caretDirection"
-            />
+            <font-awesome-icon v-show="currentColumn === 'status'" class="ml-2" :icon="'fa-solid ' + caretDirection" />
           </button>
         </td>
       </thead>
